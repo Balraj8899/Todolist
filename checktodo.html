@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Simple TODO List</title>
+	<style type="text/css">
+		body{
+			width: 50%;
+			margin: 0 auto;
+			font-family: sans-serif;
+			background-color: #32a6a8;
+		}
+		.container{
+			width: 360px;
+
+		}
+		
+		#inputField{
+			width: 280px;
+			height: 46px;
+			border: 1px solid black;
+			outline: none;
+			font-size: 25px;
+			vertical-align: middle;
+			background-color: #dbd81a;
+			border-radius: 5px;
+		}
+		#addToDo{
+			height: 50px;
+			width: 50px;
+			border: 1px solid black;
+			vertical-align: middle;
+			font-size: 20px;
+			border-radius: 5px;
+		}
+		.to-dos{
+			margin-top: 25px;
+			outline-color: ;
+
+		}
+		.paragraph-styling{
+			margin: 0;
+			cursor: pointer;
+			border-radius: 5px;
+			background-color: greenyellow;
+			margin-top: 4px;
+				}
+				::placeholder{
+					color: black;
+					font-size: 20px;
+				}
+				.ref{
+					margin-top: 50px;
+				}
+	</style>
+	
+</head> 
+<body>
+
+	<!--heading-->
+	<h1>ToDo List</h1>
+
+	<!--textbox and button-->
+	<div class="container">
+<form onsubmit="return false">
+		<input type="text" id="inputField" placeholder="Enter your tasks" />
+
+	<input type="submit" value="Add" id="addToDo">
+</form>
+	<!--list-->
+	<div class ="to-dos" id="toDoContainer">
+	 <label><h3>tasks</h3></label>
+	</div>
+</div>
+
+<div class ="ref">
+<a href="https://en.wikipedia.org/wiki/Wikipedia:To-do_list" target="_blank">Needs of ToDo?</a>
+</div>
+<script type="text/javascript">
+	//create a variable for storing data from html file
+		//let text=document.getElementById("inputField");
+		let addToDoButton=document.getElementById('addToDo');
+		let toDoContainer =document.getElementById('toDoContainer');
+		let inputField=document.getElementById('inputField');
+
+		//by clcking the todo button process will starts
+
+		addToDoButton.addEventListener('click',function(){
+
+			var paragraph=document.createElement('p')
+
+			//paragraph-styling(style class)
+			paragraph.classList.add('paragraph-styling');
+
+			//give text to html field
+			paragraph.innerText=inputField.value;
+				toDoContainer.appendChild(paragraph);
+
+				//make textfield as null after enter data
+				inputField.value="";
+
+				//first click of the list value will lined by using style decoration
+				paragraph.addEventListener('click',function(){
+					paragraph.style.textDecoration="line-through";				})
+
+				//second click of the value data was removed by using remove child
+				paragraph.addEventListener('dblclick',function(){
+				
+                    const value = paragraph.innerText
+                    inputField.value = value
+					toDoContainer.removeChild(paragraph);
+					inputField.focus();
+
+
+				})
+		})
+	</script>
+</body>
+</html>
